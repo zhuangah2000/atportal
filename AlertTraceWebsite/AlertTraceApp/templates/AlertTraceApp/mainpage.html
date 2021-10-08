@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>ATPortal -Management</title>
+    <!-- plugins:css -->
+    <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+
+    <link rel="stylesheet" href="../static/vendors/feather/feather.css">
+    <link rel="stylesheet" href="../static/vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="../static/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="../static/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="../static/vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" type="../static/text/css" href="../static/js/select.dataTables.min.css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="../static/css/vertical-layout-light/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="../static/images/favicon.png"/>
+
+</head>
+<body>
+<style>
+    a:visited {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+
+
+
+
+
+
+
+
+
+</style>
+<div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+            <a class="navbar-brand brand-logo mr-5" href="../static/index.html"><img src="../static/images/logo.svg"
+                                                                                     class="mr-2" alt="logo"/></a>
+            <a class="navbar-brand brand-logo-mini" href="../static/index.html"><img
+                    src="../static/images/logo-mini.svg" alt="logo"/></a>
+        </div>
+        <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+            <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                <span class="icon-menu"></span>
+            </button>
+
+
+            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+                    data-toggle="offcanvas">
+                <span class="icon-menu"></span>
+            </button>
+            <button type="button" class="btn btn-primary btn-sm"><a href="{% url 'home-page' %}">Log Out</a></button>
+        </div>
+
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_settings-panel.html -->
+
+        <div id="right-sidebar" class="settings-panel">
+            <i class="settings-close ti-close"></i>
+            <ul class="nav nav-tabs border-top" id="setting-panel" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="todo-tab" data-toggle="tab" href="#todo-section" role="tab"
+                       aria-controls="todo-section" aria-expanded="true">TO DO LIST</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="chats-tab" data-toggle="tab" href="#chats-section" role="tab"
+                       aria-controls="chats-section">CHATS</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="setting-content">
+                <div class="tab-pane fade show active scroll-wrapper" id="todo-section" role="tabpanel"
+                     aria-labelledby="todo-section">
+                    <div class="add-items d-flex px-3 mb-0">
+                        <form class="form w-100">
+                            <div class="form-group d-flex">
+                                <input type="text" class="form-control todo-list-input" placeholder="Add To-do">
+                                <button type="submit" class="add btn btn-primary todo-list-add-btn" id="add-task">Add
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="list-wrapper px-3">
+                        <ul class="d-flex flex-column-reverse todo-list">
+                            <li>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="checkbox" type="checkbox">
+                                        Team review meeting at 3.00 PM
+                                    </label>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <h4 class="px-3 text-muted mt-5 font-weight-light mb-0">Events</h4>
+                    <div class="events pt-4 px-3">
+                        <div class="wrapper d-flex mb-2">
+                            <i class="ti-control-record text-primary mr-2"></i>
+                            <span>Feb 11 2018</span>
+                        </div>
+                        <p class="mb-0 font-weight-thin text-gray">Creating component page build a js</p>
+                        <p class="text-gray mb-0">The total number of sessions</p>
+                    </div>
+                    <div class="events pt-4 px-3">
+                        <div class="wrapper d-flex mb-2">
+                            <i class="ti-control-record text-primary mr-2"></i>
+                            <span>Feb 7 2018</span>
+                        </div>
+                        <p class="mb-0 font-weight-thin text-gray">Meeting with Alisa</p>
+                        <p class="text-gray mb-0 ">Call Sarah Graves</p>
+                    </div>
+                </div>
+                <!-- To do section tab ends -->
+                <div class="tab-pane fade" id="chats-section" role="tabpanel" aria-labelledby="chats-section">
+                    <div class="d-flex align-items-center justify-content-between border-bottom">
+                        <p class="settings-heading border-top-0 mb-3 pl-3 pt-0 border-bottom-0 pb-0">Friends</p>
+                        <small class="settings-heading border-top-0 mb-3 pt-0 border-bottom-0 pb-0 pr-3 font-weight-normal">See
+                            All</small>
+                    </div>
+                    <ul class="chat-list">
+                        <li class="list active">
+                            <div class="profile"><img src="../static/images/faces/face1.jpg" alt="image"><span
+                                    class="online"></span></div>
+                            <div class="info">
+                                <p>Thomas Douglas</p>
+                                <p>Available</p>
+                            </div>
+                            <small class="text-muted my-auto">19 min</small>
+                        </li>
+                        <li class="list">
+                            <div class="profile"><img src="../static/images/faces/face2.jpg" alt="image"><span
+                                    class="offline"></span></div>
+                            <div class="info">
+                                <div class="wrapper d-flex">
+                                    <p>Catherine</p>
+                                </div>
+                                <p>Away</p>
+                            </div>
+                            <div class="badge badge-success badge-pill my-auto mx-2">4</div>
+                            <small class="text-muted my-auto">23 min</small>
+                        </li>
+                        <li class="list">
+                            <div class="profile"><img src="../static/images/faces/face3.jpg" alt="image"><span
+                                    class="online"></span></div>
+                            <div class="info">
+                                <p>Daniel Russell</p>
+                                <p>Available</p>
+                            </div>
+                            <small class="text-muted my-auto">14 min</small>
+                        </li>
+                        <li class="list">
+                            <div class="profile"><img src="../static/images/faces/face4.jpg" alt="image"><span
+                                    class="offline"></span></div>
+                            <div class="info">
+                                <p>James Richardson</p>
+                                <p>Away</p>
+                            </div>
+                            <small class="text-muted my-auto">2 min</small>
+                        </li>
+                        <li class="list">
+                            <div class="profile"><img src="../static/images/faces/face5.jpg" alt="image"><span
+                                    class="online"></span></div>
+                            <div class="info">
+                                <p>Madeline Kennedy</p>
+                                <p>Available</p>
+                            </div>
+                            <small class="text-muted my-auto">5 min</small>
+                        </li>
+                        <li class="list">
+                            <div class="profile"><img src="../static/images/faces/face6.jpg" alt="image"><span
+                                    class="online"></span></div>
+                            <div class="info">
+                                <p>Sarah Graves</p>
+                                <p>Available</p>
+                            </div>
+                            <small class="text-muted my-auto">47 min</small>
+                        </li>
+                    </ul>
+                </div>
+                <!-- chat tab ends -->
+            </div>
+        </div>
+        <!-- partial -->
+        <!-- partial:partials/_sidebar.html -->
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">
+                        <i class="icon-grid menu-icon"></i>
+                        <span class="menu-title">Assign [Randomly]</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../static/pages/documentation/documentation.html">
+                        <i class="icon-paper menu-icon"></i>
+                        <span class="menu-title">Assign [Specifically]</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- partial -->
+        <div class="main-panel">
+            <div class="content-wrapper">
+                <div class="row">
+                    <div class="col-md-12 grid-margin">
+                        <div class="row">
+                            <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                                <h3 class="font-weight-bold">Assign Randomly</h3>
+                                <h6 class="font-weight-normal mb-0">This module help to randomize distribution of minis to large number of employees
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-md-5 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Available Minis Serial Code</h4>
+                                <div class="list-wrapper pt-2">
+                                    <ul class="d-flex flex-column-reverse todo-list todo-list-custom">
+
+                                        {% for key, value in item_list.items %}
+                                        <li>
+                                            <div class="form-check form-check-flat">
+                                                <label class="form-check-label">
+
+                                                   {{ value }}
+                                                </label>
+                                            </div>
+                                        </li>
+                                        {% endfor %}
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-6 grid-margin transparent">
+                        <div class="row">
+                            <div class="col-md-6 mb-4 stretch-card transparent">
+                                <div class="card card-tale">
+                                    <div class="card-body">
+                                        <p class="mb-4">Total Available Minis</p>
+                                        <p class="fs-30 mb-2">{{totalMinis}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4 stretch-card transparent">
+                                <div class="card card-dark-blue">
+                                    <div class="card-body">
+                                        <p class="mb-4">Upload Your Excel File</p>
+
+
+                                        <input type="file" id="excel_file"
+                                               accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                                               style="color:transparent; "/>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
+                                <div class="card card-light-blue">
+
+
+                                       <div class="card-body">
+                                        <p class="mb-4">Create New Group</p>
+                                        <p class="fs-30 mb-2">-</p>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="col-md-6 stretch-card transparent">
+                                <div class="card card-light-danger">
+                                        <div class="card-body">
+                                        <p class="mb-4">Existing Group</p>
+                                        <p><strong>{{groupresult}}</strong></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="col-lg-12 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Review: <input id="filename" type="text"
+                                                                  style="border: none; border-color: transparent;"
+                                                                  readonly/>
+
+                            <button type="button" class="btn btn-primary btn-sm"   style="float: right;"  onclick="javascript:appendColumn()" >+ Group</button>
+                            <button type="button" class="btn btn-primary btn-sm"   style="float: right;"  onclick="javascript:deleteColumns()" >- Group</button>
+
+
+
+                            </h4>
+                            <div class="table-responsive">
+                                <div class="list-wrapper pt-2">
+
+                                    <div id="excel_data" class="table table-striped"></div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <button type="button" class="btn btn-success btn-icon-text" id="check">
+                            Download CSV
+                        </button>
+
+
+                    </div>
+                </div>
+
+
+            </div>
+            <!-- content-wrapper ends -->
+            <!-- partial:partials/_footer.html -->
+
+            <footer class="footer">
+                <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                    <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021  Macrovention </span>
+
+                </div>
+
+
+            </footer>
+            <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+</div>
+<!-- container-scroller -->
+
+<!-- plugins:js -->
+<script src="../static/vendors/js/vendor.bundle.base.js"></script>
+<!-- endinject -->
+<!-- Plugin js for this page -->
+<script src="../static/vendors/chart.js/Chart.min.js"></script>
+<script src="../static/vendors/datatables.net/jquery.dataTables.js"></script>
+<script src="../static/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+<script src="../static/js/dataTables.select.min.js"></script>
+
+<!-- End plugin js for this page -->
+<!-- inject:js -->
+<script src="../static/js/off-canvas.js"></script>
+<script src="../static/js/hoverable-collapse.js"></script>
+<script src="../static/js/template.js"></script>
+<script src="../static/js/settings.js"></script>
+<script src="../static/js/todolist.js"></script>
+<!-- endinject -->
+<!-- Custom js for this page-->
+<script src="../static/js/dashboard.js"></script>
+<script src="../static/js/Chart.roundedBarCharts.js"></script>
+<!-- End custom js for this page-->
+
+<script>
+    $('form .autosubmit').on('change', function() {
+   this.form.submit();
+});
+</script>
+
+{% autoescape off %}
+
+<script>
+  const excel_file = document.getElementById('excel_file');
+
+  var filterserial = {{filterserial}}
+
+
+  excel_file.addEventListener('change', (event) => {
+
+    if (!['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.ms-excel'].includes(event.target.files[0].type)) {
+      document.getElementById('excel_data').innerHTML = '<div class="alert alert-danger">Only .xlsx or .xls file format are allowed</div>';
+
+      excel_file.value = '';
+
+      return false;
+    }
+
+        var shuffledSerials = filterserial.slice(0).sort(() => 0.5 - Math.random() );
+        var chooser = () => shuffledSerials.pop();
+
+    var reader = new FileReader();
+
+    reader.readAsArrayBuffer(event.target.files[0]);
+
+    reader.onload = function(event) {
+
+      var data = new Uint8Array(reader.result);
+
+      var work_book = XLSX.read(data, {
+        type: 'array'
+      });
+
+      var sheet_name = work_book.SheetNames;
+
+      var sheet_data = XLSX.utils.sheet_to_json(work_book.Sheets[sheet_name[0]], {
+        header: 1
+      });
+
+     var total = "{{totalMinis}}";
+
+		var counter = XLSX.utils.sheet_to_json(work_book.Sheets[sheet_name[0]], {
+			header: 2
+		});
+
+
+
+
+		if (sheet_data.length > 0 && total >= counter.length) {
+
+        var table_output = '<table class="table table-striped table-bordered" id="tableid">';
+
+        for (var row = 0; row < sheet_data.length; row++) {
+
+          table_output += '<tr>';
+          if (row == 0) {
+            table_output += '<th>' + ['Device'] + '</th>'
+          } else {
+                                table_output += '<td>' + [chooser()] + '</td>'
+
+
+          }
+
+          for (var cell = 0; cell < sheet_data[row].length; cell++) {
+
+            if (row == 0) {
+
+              table_output += '<th>' + sheet_data[row][cell] + '</th>';
+
+            } else {
+
+              table_output += '<td>' + sheet_data[row][cell] + '</td>';
+
+            }
+
+          }
+
+          table_output += '</tr>';
+
+        }
+
+        table_output += '</table>';
+
+        document.getElementById('excel_data').innerHTML = table_output;
+      }
+        else {
+
+			excel_file.value = '';
+			alert('[ERROR] \nYour employees records is larger than the available Minis !\n' + total + ' Minis left only.');
+
+    }
+
+    }
+
+  });
+</script>
+{% endautoescape %}
+
+<script>
+    document.getElementById('excel_file').onchange = uploadOnChange;
+
+function uploadOnChange() {
+  var filename = this.value;
+  var lastIndex = filename.lastIndexOf("\\");
+  if (lastIndex >= 0) {
+    filename = filename.substring(lastIndex + 1);
+  }
+  document.getElementById('filename').value = filename;
+}
+</script>
+<script>
+    $(document).ready(function() {
+     $("#check").click(function() {
+         if($('table#tableid').length){
+         let data = "";
+  const tableData = [];
+  const rows = document.querySelectorAll("table tr");
+  for (const row of rows) {
+    const rowData = [];
+    for (const [index, column] of row.querySelectorAll("th, td").entries()) {
+      // To retain the commas in the "Description" column, we can enclose those fields in quotation marks.
+      if ((index + 1) % 3 === 0) {
+        rowData.push('"' + column.innerText + '"');
+      } else {
+        rowData.push(column.innerText);
+      }
+    }
+    tableData.push(rowData.join(","));
+  }
+
+  function getFormattedTime() {
+    var today = new Date();
+    var y = today.getFullYear();
+    // JavaScript months are 0-based.
+    var m = today.getMonth() + 1;
+    var d = today.getDate();
+    var h = today.getHours();
+    var mi = today.getMinutes();
+    var s = today.getSeconds();
+    return y + "-" + m + "-" + d + " " + h + "." + mi ;
+}
+  data += tableData.join("\n");
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([data], { type: "text/csv" }));
+  a.setAttribute("download","ATcombined_" +  getFormattedTime() + ".csv");
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+          alert('Csv download successfully');
+          document.location.reload(true);
+        }else{
+          alert('Download Fail: No csv file to be read');
+
+        }
+    });
+});
+</script>
+
+<script>
+function createSelectEl(values){
+    var select = document.createElement("select");
+    select.name = "group1";
+    select.id = "groupId"
+    // 1st option
+    var option = document.createElement("option");
+    option.text = 'Null';
+    select.appendChild(option);
+    for (const val of values)
+    {
+        var option = document.createElement("option");
+        option.value = val;
+        option.text = val;
+        select.appendChild(option);
+    }
+    return select;
+}
+
+let groupNum = 1;
+
+// append column to the HTML table
+function appendColumn() {
+    var tbl = document.getElementById('tableid'), // table reference
+        i;
+
+  // open loop for each row and append cell
+  for (let i = 0; i < tbl.rows.length; i++) {
+    const values = ["3540531", "3518796", "4512365", "1234896"];
+    createCell(tbl.rows[i].insertCell(tbl.rows[i].cells.length), createSelectEl(values), 'col');
+    // createCell(tbl.rows[i].insertCell(tbl.rows[i].cells.length), i, 'col');
+  }
+
+  tbl.rows[0].querySelector('td:last-child').textContent = 'Group' + groupNum;
+  groupNum++;
+}
+
+// create DIV element and append to the table cell
+function createCell(cell, text, style) {
+  var div = document.createElement('div'); // create DIV element
+    //txt = document.createTextNode(text); // create text node
+  // div.appendChild(txt); // append text node to the DIV
+  div.appendChild(text);
+  div.setAttribute('class', style); // set DIV class attribute
+  div.setAttribute('className', style); // set DIV class attribute for IE (?!)
+  cell.appendChild(div); // append DIV to the table cell
+}
+
+// delete table columns with index greater then 0
+function deleteColumns() {
+    var tbl = document.getElementById('tableid'), // table reference
+        lastCol = tbl.rows[0].cells.length - 1,    // set the last column index
+        i, j;
+    // delete cells with index greater then 0 (for each row)
+    for (i = 0; i < tbl.rows.length; i++) {
+        for (j = lastCol; j > 0; j--) {
+            tbl.rows[i].deleteCell(j);
+        }
+    }
+}
+</script>
+</body>
+</html>
+
